@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Com & Dev | Register</title>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="registerStyle.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <h3>Register</h3>        
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <div class="input-box">
+                    <input type="text" class="form-control" id="username" formControlName="username" placeholder="Username">   
+                    <i class="bx bxs-user"></i>   
+                </div>
+                <div class="input-box">
+                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="*****@example.com">
+                    <i class="bx bxl-gmail"></i>  
+                </div>
+                <div class="input-box">
+                    <input type="password" class="form-control" id="password" formControlName="password" placeholder="***********">
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="form-control" id="password_confirmation" formControlName="password_confirmation" placeholder="***********">
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="form-control" id="avatar" formControlName="avatar" placeholder="Avatar">
+                    <i class="bx bxs-photo-album"></i>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <div class="register-link">
+                    <p>Already have an account ? 
+                        <a (click)="login()">Login</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
