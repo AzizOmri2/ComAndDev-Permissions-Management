@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+
+  background: linear-gradient(135deg, #1f2d3d, #3e5569);
+  overflow: hidden;
+}
+
+/* Glass Card */
+.register-card {
+  width: 430px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 18px;
+  padding: 40px 35px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+
+  animation: fadeIn 1.2s ease;
+}
+
+/* Titles */
+.title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 15px;
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+/* Inputs */
+.input-group {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.input-group input {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  outline: none;
+
+  padding: 12px 45px 12px 15px;
+  font-size: 15px;
+  color: #fff;
+
+  /* Animation */
+  transition: 0.25s ease;
+}
+
+.input-group input::placeholder {
+  color: #f0f0f0;
+}
+
+.input-group input:focus {
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
+/* Icons */
+.input-group i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  opacity: 0.85;
+}
+
+/* Button */
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  background: #fff;
+  color: #1f2d3d;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+
+  transition: transform 0.2s, background 0.2s;
+}
+
+.register-btn:hover {
+  background: #e6edf3;
+  transform: translateY(-2px);
+}
+
+/* Bottom text */
+.login-text {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 18px;
+}
+
+.login-text a {
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 1.5s ease;
+}
+
+.slide-up {
+  animation: fadeIn 1.5s ease;
+}
+
+
+.error {
+  color: #ffb3b3;
+  font-size: 13px;
+  margin-top: -12px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.shake {
+  animation: shakeAnim 0.4s ease;
+}
+
+@keyframes shakeAnim {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
+
+
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0,0,0,0.2);
+  border-top: 3px solid #1f2d3d;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+.success-animation {
+  text-align: center;
+  margin-top: 15px;
+  animation: pop 0.6s ease;
+}
+
+.success-animation i {
+  font-size: 60px;
+  color: #7CFC7C;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-box {
+  border: 2px solid #7CFC7C;
+  box-shadow: 0 0 15px rgba(124, 252, 124, 0.5);
+}
+
+.error {
+  background: rgba(255, 0, 0, 0.2);
+  color: white;
+  border: 1px solid #ff4d4f;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-align: center;
+}

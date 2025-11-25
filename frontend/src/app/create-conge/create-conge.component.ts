@@ -7,9 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-conge',
   templateUrl: './create-conge.component.html',
-  styleUrls: ['./create-conge.component.scss',
-              '../../assets/dist/css/style.min.css',
-              '../../assets/libs/flot/css/float-chart.css']
+  styleUrls: ['./create-conge.component.css',]
 })
 export class CreateCongeComponent {
 
@@ -24,26 +22,6 @@ export class CreateCongeComponent {
 
   constructor(private congeService: CongeService, private router:Router){
 
-  }
-
-  logout(){
-    this.router.navigate(['/login/user'])
-  }
-
-  permissionsList(){
-    this.router.navigate(['/list/conge'])
-  }
-
-  permissionCreate(){
-    this.router.navigate(['/create/conge'])
-  }
-
-  usersList(){
-    this.router.navigate(['/list/users'])
-  }
-
-  dashboard(){
-    this.router.navigate(['home'])
   }
 
   onSubmit(){

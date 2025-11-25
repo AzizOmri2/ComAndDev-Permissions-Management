@@ -1,0 +1,107 @@
+/* Page header */
+.page-header-container {
+    background: #ffffff;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-header-left .page-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+
+.page-header-left .page-subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 3px;
+}
+
+/* Breadcrumb */
+.breadcrumb-nav { font-size: 14px; }
+.breadcrumb {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+.breadcrumb-item a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 500;
+}
+.breadcrumb-item.active {
+    color: #9ca3af;
+}
+
+/* Form container */
+.create-conge-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    animation: fadeIn 0.4s ease;
+}
+
+.conge-form .form-group {
+    margin-bottom: 20px;
+}
+
+.conge-form label {
+    font-weight: 600;
+    color: #374151;
+    padding-top: 8px;
+}
+
+.conge-form input.form-control,
+.conge-form textarea.form-control {
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 8px 12px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.conge-form input.form-control:focus,
+.conge-form textarea.form-control:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79,70,229,0.2);
+}
+
+/* Submit button */
+.btn-submit {
+    padding: 10px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.25s ease;
+}
+
+.btn-submit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .conge-form .form-group.row {
+        flex-direction: column;
+    }
+    .conge-form label {
+        margin-bottom: 6px;
+    }
+    .create-conge-container {
+        padding: 20px 15px;
+    }
+}

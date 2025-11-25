@@ -1,54 +1,63 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
+declare var bootstrap: any; // Needed for Bootstrap JS modal
 
 @Component({
   selector: 'app-list-users',
   templateUrl: './list-users.component.html',
-  styleUrls: ['./list-users.component.scss',
-              '../../assets/dist/css/style.min.css',
-              '../../assets/libs/flot/css/float-chart.css']
+  styleUrls: ['./list-users.component.css']
 })
-export class ListUsersComponent {
+export class ListUsersComponent implements OnInit {
 
-  users:any;
+  users: any[] = [];
+  selectedUser: any = null;
+  deleteModal: any;
 
-  constructor(private userService: UserService, private router : Router){
+  constructor(private userService: UserService, private router: Router) { }
 
-  }  
-
-  logout(){
-    this.router.navigate(['/login/user'])
+  ngOnInit(): void {
+    this.loadUsers();
   }
 
-  permissionsList(){
-    this.router.navigate(['/list/conge'])
-  }
-
-  permissionCreate(){
-    this.router.navigate(['/create/conge'])
-  }
-
-  usersList(){
-    this.router.navigate(['/list/users'])
-  }
-
-  dashboard(){
-    this.router.navigate(['home'])
-  }
-
-  ngOnInit(){
-    this.CongeList()
-  }
-
-  CongeList(){
-    this.users = this.userService.listUser().subscribe(
-      user => {
-        this.users = user
+  // Fetch all users
+  loadUsers(): void {
+    this.userService.listUser().subscribe(
+      (data: any) => {
+        this.users = data;
         console.log(this.users);
+      },
+      (error) => {
+        console.error("Failed to load users", error);
       }
-    )
+    );
   }
 
+  // Open delete confirmation modal
+  openDeleteModal(user: any): void {
+    this.selectedUser = user;
+
+    // Initialize and show Bootstrap modal
+    const modalElement = document.getElementById('deleteUserModal');
+    this.deleteModal = new bootstrap.Modal(modalElement);
+    this.deleteModal.show();
+  }
+
+  // Confirm delete
+  confirmDelete(): void {
+    if (!this.selectedUser) return;
+
+    this.userService.deleteUser(this.selectedUser.id).subscribe(
+      () => {
+        console.log("User deleted successfully");
+        this.loadUsers(); // Refresh list
+        this.deleteModal.hide(); // Hide modal
+        this.selectedUser = null; // Reset selection
+      },
+      (error) => {
+        console.error("Failed to delete user", error);
+      }
+    );
+  }
 }

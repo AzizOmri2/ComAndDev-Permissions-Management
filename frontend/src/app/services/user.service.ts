@@ -1,44 +1,44 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  url:string = "http://127.0.0.1:3000";
-  constructor(private http: HttpClient) { }
-
-
-  listUser(){
-    return this.http.get(this.url+'/sessions');
-  }
-
+  url: string = "http://127.0.0.1:3000";
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type':'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  
-  getConnected(data:any){
-    return this.http.post(this.url+'/sessions', data, this.httpOptions);
+
+  constructor(private http: HttpClient) { }
+
+  // List all users
+  listUser() {
+    return this.http.get(this.url + '/users');
   }
 
-  findUser(id:any){
-    return this.http.get(this.url+'/sessions/'+id);
+  // Get a single user by ID
+  findUser(id: any) {
+    return this.http.get(this.url + '/users/' + id);
   }
 
-
-  // Registration
-  getRegistered(data:any){
-    return this.http.post(this.url+'/registrations', data, this.httpOptions);
+  // Delete a user by ID
+  deleteUser(id: any) {
+    return this.http.delete(`${this.url}/users/${id}`);
   }
 
-  // updateConge(data: any, id: any){
-  //   return this.http.put(this.url+'/demandeConge/'+id, data, this.httpOptions);
-  // }
+  // Create a session / login
+  getConnected(data: any) {
+    return this.http.post(this.url + '/sessions', {
+      email: data.email,
+      password: data.password
+    }, this.httpOptions);
+  }
 
-  // deleteConge(id:any){
-  //   return this.http.delete(this.url+'/demandeConge/'+id);
-  // }
+  // Register a new user
+  getRegistered(data: any) {
+    return this.http.post(this.url + '/registrations', data, this.httpOptions);
+  }
 }

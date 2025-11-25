@@ -14,13 +14,13 @@ Rails.application.routes.draw do
   post '/demandeConge', to: 'conges#create'
   put '/demandeConge/:id', to: 'conges#update'
   delete '/demandeConge/:id', to: 'conges#destroy'
-  put '/demandeCongeStatus/:id', to: 'conges#status'
+  # Accept/Reject routes
+  put '/demandeCongeAccept/:id', to: 'conges#accept'
+  put '/demandeCongeReject/:id', to: 'conges#reject'
 
 
-  #User
-  get '/sessions', to: 'sessions#index'
-  get '/sessions/:id', to: 'sessions#show'
-  post '/sessions', to: 'sessions#create'
+  # User management
+  resources :users, only: [:index, :show, :destroy]
 
 
   resources :sessions, only: [:create, :index, :show, :logout]

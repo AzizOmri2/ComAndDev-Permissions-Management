@@ -1,0 +1,170 @@
+/* Navbar brand */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    position: relative; /* allows overflow */
+    margin-right: 1.5rem; /* space between logo and sidebar/toggler */
+}
+
+/* Logo wrapper allows bigger logo without stretching navbar */
+.logo-wrapper {
+    height: 60px; /* same as navbar */
+    overflow: visible;
+    display: flex;
+    align-items: center;
+}
+
+/* Add spacing between navbar brand (logo) and sidebar toggle */
+.navbar-header .navbar-brand {
+    margin-left: -15px; /* negative value moves it left */
+    margin-right: 20px;
+}
+
+.left-sidebar {
+    padding-top: 120px; /* push sidebar content down if needed */
+    transition: all 0.3s ease;
+}
+
+/* Actual logo */
+.logo-wrapper img {
+    margin-top: 50px; /* positions visually */
+    height: 120px; /* visually bigger */
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.logo-wrapper img:hover {
+    transform: scale(1.05);
+}
+
+/* Optional small icon */
+.navbar-brand .logo-icon {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 10px;
+}
+
+/* Navbar adjustments */
+.topbar .navbar {
+    min-height: 60px; /* keep navbar height standard */
+}
+
+/* Center nav links vertically */
+.navbar-nav .nav-link {
+    line-height: 60px;
+}
+
+
+/* Sidebar links */
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #cfd8dc;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 4px 10px;
+}
+
+.sidebar-link i {
+    font-size: 20px;
+    margin-right: 12px;
+    transition: color 0.3s ease;
+}
+
+.sidebar-link span.hide-menu {
+    font-size: 15px;
+}
+
+/* Hover effect */
+.sidebar-link:hover {
+    background-color: #1abc9c; /* highlight color */
+    color: #fff;
+}
+
+.sidebar-link:hover i {
+    color: #fff;
+}
+
+/* Active link */
+.sidebar-link-active {
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(26, 188, 156, 0.4);
+}
+
+.sidebar-link-active i {
+    color: #fff;
+}
+
+/* Optional: smooth transition for hover + active */
+.sidebar-link,
+.sidebar-link-active {
+    transition: all 0.3s ease;
+}
+
+
+/* Main Wrapper */
+#main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* full viewport height */
+}
+
+/* Content + Sidebar container */
+#main-wrapper > .d-flex.flex-grow-1 {
+    flex: 1 0 auto; /* take remaining space */
+}
+
+/* Page wrapper */
+.page-wrapper {
+    flex: 1 0 auto; /* grow to fill remaining space */
+    padding: 20px;
+}
+
+/* Footer styling */
+.footer {
+    flex-shrink: 0; /* prevent shrinking */
+    background-color: #1F262D; /* matches your dark theme */
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+}
+
+.footer a {
+    color: #1abc9c;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .logo-wrapper img {
+        height: 50px;
+        margin-top: 0; /* adjust for smaller screens */
+    }
+
+    .navbar-brand {
+        margin-right: 0.5rem; /* smaller margin on mobile */
+    }
+
+    .navbar-brand .logo-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .navbar-nav .nav-link {
+        line-height: normal;
+    }
+}

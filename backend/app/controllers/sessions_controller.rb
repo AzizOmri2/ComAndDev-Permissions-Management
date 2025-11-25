@@ -1,27 +1,16 @@
 class SessionsController < ApplicationController
     include CurrentUserConcern
 
-
-    def index
-        users = User.all()
-        render json:users, status: 200
-    end
-
-
     def create
         user = User
-            .find_by(email: user_params["email"])
-            .try(:authenticate, user_params["password"])
+            .find_by(email: user_params[:email])
+            &.authenticate(user_params[:password])
 
         if user
             session[:user_id] = user.id
-            render json: {
-                status: :created,
-                logged_in: true,
-                user: user
-            }
+            render json: { status: :created, logged_in: true, user: user }, status: :created
         else
-            render json: { status: 401 } 
+            render json: { error: "Invalid credentials", logged_in: false }, status: :unauthorized
         end
     end
 
@@ -57,9 +46,9 @@ class SessionsController < ApplicationController
         }
     end
 
-    private 
+    private
     def user_params
-        params.permit(:email, :password)
+      params.permit(:email, :password)
     end
 
 end

@@ -1,77 +1,65 @@
 import { Component } from '@angular/core';
 import { CongeService } from '../services/conge.service';
 import { Router } from '@angular/router';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-list-conges',
   templateUrl: './list-conges.component.html',
-  styleUrls: ['./list-conges.component.scss',
-              '../../assets/dist/css/style.min.css',
-              '../../assets/libs/flot/css/float-chart.css']
+  styleUrls: ['./list-conges.component.css',]
 })
 export class ListCongesComponent {
 
-  conges:any;
+  conges: any;
+  selectedConge: any = null;
+  deleteModal: any;
 
-  constructor(private congeService: CongeService,private router : Router){
+  constructor(private congeService: CongeService, private router: Router) {}
 
+  ngOnInit() {
+    this.CongeList();
   }
 
-  logout(){
-    this.router.navigate(['/login/user'])
+  CongeList() {
+    this.congeService.listConge().subscribe(conge => {
+      this.conges = conge;
+      console.log(this.conges);
+    });
   }
 
-  permissionsList(){
-    this.router.navigate(['/list/conge'])
+  // Open modal
+  openDeleteModal(conge: any) {
+    this.selectedConge = conge;
+
+    const modalElement = document.getElementById('deletePermissionModal');
+    this.deleteModal = new bootstrap.Modal(modalElement);
+    this.deleteModal.show();
   }
 
-  permissionCreate(){
-    this.router.navigate(['/create/conge'])
+  // Cancel deletion
+  cancelDelete() {
+    this.selectedConge = null;
+    if (this.deleteModal) this.deleteModal.hide();
   }
 
-  usersList(){
-    this.router.navigate(['/list/users'])
+  // Confirm deletion
+  confirmDelete() {
+    if (!this.selectedConge) return;
+
+    this.congeService.deleteConge(this.selectedConge.id).subscribe(() => {
+      console.log("Permission deleted successfully");
+      this.CongeList(); // refresh table
+      this.cancelDelete();
+    });
   }
 
-  dashboard(){
-    this.router.navigate(['home'])
+  // Accept / Reject
+  acceptConge(id: any) {
+    this.congeService.acceptConge(id).subscribe(() => this.CongeList());
   }
 
-  ngOnInit(){
-    this.CongeList()
-  }
-
-  CongeList(){
-    this.conges = this.congeService.listConge().subscribe(
-      conge => {
-        this.conges = conge
-        console.log(this.conges);
-      }
-    )
-  }
-
-  deleteConge(id:any){
-    const shouldDelete = window.confirm("Are you sure you want to delete ?");
-
-    if (shouldDelete) {
-      this.congeService.deleteConge(id).subscribe(
-        conge => {
-          console.log("Conge has been deleted.");
-        }
-      )
-      alert("Permission deleted successfully !");
-      window.location.reload();
-    }
-    
-  }
-
-  changeStatus(id:any){
-    this.congeService.updateStatus(id).subscribe(
-      conge => {
-        console.log("Conge has been accepted.");
-      }
-    )
-    window.location.reload();
+  rejectConge(id: any) {
+    this.congeService.rejectConge(id).subscribe(() => this.CongeList());
   }
 
 }

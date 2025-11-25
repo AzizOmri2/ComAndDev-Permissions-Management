@@ -1,43 +1,68 @@
-<!DOCTYPE html>
-<html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Com & Dev | Register</title>
-        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="registerStyle.css">
-    </head>
-    <body>
-        <div class="wrapper">
-            <h3>Register</h3>        
-            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-                <div class="input-box">
-                    <input type="text" class="form-control" id="username" formControlName="username" placeholder="Username">   
-                    <i class="bx bxs-user"></i>   
-                </div>
-                <div class="input-box">
-                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="*****@example.com">
-                    <i class="bx bxl-gmail"></i>  
-                </div>
-                <div class="input-box">
-                    <input type="password" class="form-control" id="password" formControlName="password" placeholder="***********">
-                    <i class="bx bxs-lock-alt"></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" class="form-control" id="password_confirmation" formControlName="password_confirmation" placeholder="***********">
-                    <i class="bx bxs-lock-alt"></i>
-                </div>
-                <div class="input-box">
-                    <input type="text" class="form-control" id="avatar" formControlName="avatar" placeholder="Avatar">
-                    <i class="bx bxs-photo-album"></i>
-                </div>
-                <button type="submit" class="btn">Register</button>
-                <div class="register-link">
-                    <p>Already have an account ? 
-                        <a (click)="login()">Login</a>
-                    </p>
-                </div>
-            </form>
-        </div>
-    </body>
-</html>
+<div class="register-container">
+  <div class="register-card animate-fade-slide" [class.shake]="shake" [class.success-box]="success">
+
+    <h2 class="title">Create Account</h2>
+    <p class="subtitle">Join our platform</p>
+
+    <!-- SUCCESS ANIMATION -->
+    <div class="success-animation" *ngIf="success">
+      <i class='bx bx-check-circle'></i>
+      <p>Account Created!</p>
+    </div>
+    <p *ngIf="registrationError" class="error">{{ registrationError }}</p>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+      <!-- Username -->
+      <div class="input-group">
+        <i class="bx bxs-user"></i>
+        <input type="text" formControlName="username" placeholder="Username">
+      </div>
+      <small class="error" *ngIf="userForm.controls.username.touched && userForm.controls.username.invalid">
+        Username is required.
+      </small>
+
+      <!-- Email -->
+      <div class="input-group">
+        <i class="bx bxl-gmail"></i>
+        <input type="email" formControlName="email" placeholder="Email address">
+      </div>
+      <small class="error" *ngIf="userForm.controls.email.touched && userForm.controls.email.invalid">
+        Enter a valid email.
+      </small>
+
+      <!-- Password -->
+      <div class="input-group">
+        <i class="bx bxs-lock-alt"></i>
+        <input type="password" formControlName="password" placeholder="Password">
+      </div>
+
+      <!-- Password confirmation -->
+      <div class="input-group">
+        <i class="bx bxs-lock-alt"></i>
+        <input type="password" formControlName="password_confirmation" placeholder="Confirm password">
+      </div>
+      <small class="error" *ngIf="shake">Passwords do not match!</small>
+
+      <!-- Avatar -->
+      <div class="input-group">
+        <i class="bx bxs-photo-album"></i>
+        <input type="text" formControlName="avatar" placeholder="Avatar URL">
+      </div>
+
+      <!-- Button with loader -->
+      <button type="submit" class="register-btn" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Register</span>
+        <div class="loader" *ngIf="isLoading"></div>
+      </button>
+
+      <p class="login-text">
+        Already have an account?
+        <a [routerLink]="['/login']">Login</a>
+      </p>
+    </form>
+
+    
+
+  </div>
+</div>

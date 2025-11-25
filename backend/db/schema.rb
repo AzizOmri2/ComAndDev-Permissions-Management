@@ -10,23 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_31_005701) do
+ActiveRecord::Schema[7.0].define(version: 2025_11_23_144904) do
   create_table "demande_conges", force: :cascade do |t|
     t.date "dateDebut"
     t.date "dateFin"
     t.text "commentaire"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "etat"
+    t.string "etat", default: "Pending"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "avatar"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username"
-    t.string "avatar"
   end
 
 end
