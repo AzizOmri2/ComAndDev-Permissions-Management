@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
     include CurrentUserConcern
 
+    def index
+        render json: { message: "Welcome to Permitrack backend!" }
+    end
+
+    
     def create
         user = User
             .find_by(email: user_params[:email])
